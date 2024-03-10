@@ -5,9 +5,11 @@ import com.menuapp.menuapp1.dto.CreateProductDto;
 import com.menuapp.menuapp1.dto.ResponseProductDto;
 import com.menuapp.menuapp1.entity.Product;
 
+import com.menuapp.menuapp1.exceptions.ProductNotFoundException;
 import com.menuapp.menuapp1.mapper.ProductMapper;
 import com.menuapp.menuapp1.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,19 +37,32 @@ public class ProductService {
         }
         return listOfDto;
     }
-    public Product findById(Long id){
+    public ResponseProductDto findById(Long id){
         Optional<Product> optionalProduct = productRepository.findById(id);
         if(optionalProduct.isPresent()) {
-            return optionalProduct.get();
+            return productMapper.toProductDto(optionalProduct.get());
         }else {
-            throw new RuntimeException("Product with id: " + id + " does not exist.");
+            throw new ProductNotFoundException("Product with id: " + id + " does not exist.");
         }
+//       Optional<Product> productFound = productRepository.findById(id);
+//       if(productFound.isPresent()){
+//           ResponseProductDto responseProductFound = productMapper.toProductDto(productFound.get());
+//           return new ResponseEntity<>(responseProductFound, HttpStatus.CREATED);
+//       }else{
+//           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//       }
 
+//               .orElseThrow(
+//                () -> new RuntimeException("Product with id " + id + " was not found!")
+//        );
+//        return productMapper.toProductDto(productFound);
     }
 
     public ResponseProductDto updateById(CreateProductDto createProductDto, Long id){
+
+
         Product productFound =   productRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Product with id " + id + " was not found!")
+                () ->  new ProductNotFoundException("Product with id " + id + " was not found!")
         );
         productFound.setName(createProductDto.getName());
         productFound.setPrice(createProductDto.getPrice());
@@ -58,8 +73,14 @@ public class ProductService {
     }
 
     public void deleteById(Long id){
+//        Optional<Product> foundProduct = productRepository.findById(id);
+//        if(foundProduct.isPresent()){
+//            productRepository.delete(foundProduct.get());
+//        }else{
+//            throw new ProductNotFoundException("The Product with id " + id + " was not found. ");
+//        }
         Product productFound = productRepository.findById(id).orElseThrow(
-                ()-> new RuntimeException("The Product with id " + id + " was deleted. ")
+                ()-> new ProductNotFoundException("The Product with id " + id + " was deleted. ")
         );
         productRepository.delete(productFound);
 
