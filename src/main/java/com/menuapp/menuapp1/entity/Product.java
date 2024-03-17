@@ -4,14 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-@Entity
-@Table(name = "products")
+
 @Getter
 @Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +27,20 @@ public class Product {
     @NotBlank(message = "The name of the product should be always entered!")
     private String name;
 
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id")
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Vendor> vendors;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviewList;
+
+    //, fetch = FetchType.EAGER
+//    fetch = FetchType.EAGER
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+
 //    @ManyToOne
 //    @JoinColumn(name = "id")
 //    private Category category;
