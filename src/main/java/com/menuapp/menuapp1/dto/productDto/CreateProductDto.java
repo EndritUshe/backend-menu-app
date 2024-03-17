@@ -1,4 +1,4 @@
-package com.menuapp.menuapp1.dto;
+package com.menuapp.menuapp1.dto.productDto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -14,5 +14,7 @@ public class CreateProductDto {
     private String name;
     @Min(value = 0, message = "The price of the product should be bigger than 0.")
     private Double price;
+
+    private Long categoryId;
 
 }

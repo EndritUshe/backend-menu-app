@@ -1,21 +1,25 @@
 package com.menuapp.menuapp1.controller;
 
-import com.menuapp.menuapp1.dto.CreateProductDto;
-import com.menuapp.menuapp1.dto.ResponseProductDto;
+import com.menuapp.menuapp1.dto.productDto.CreateProductDto;
+import com.menuapp.menuapp1.dto.productDto.ResponseProductDto;
 import com.menuapp.menuapp1.exceptions.ProductNotFoundException;
 import com.menuapp.menuapp1.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/product")
 @AllArgsConstructor
+@CrossOrigin("http://localhost:3000")
+@Tag(
+        name = "CRUD REST APIs for Product Resource"
+)
 public class ProductController {
 
     private ProductService productService;
@@ -43,18 +47,11 @@ public class ProductController {
             description = "Http Status 200 SUCCESS"
     )
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<ResponseProductDto> findAll() {
         return productService.findAll();
     }
 
-
-// RESPONSE ENTITY TRY
-//        @GetMapping("/all")
-//    public ResponseEntity<List<ResponseProductDto>> findAll() {
-//       List<ResponseProductDto> list = productService.findAll();
-//       return new ResponseEntity<>(list,HttpStatus.OK);
-//    }
 
     @Operation(
             summary = "Find Product By ID",
@@ -82,7 +79,7 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PutMapping("product/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<ResponseProductDto> updateById(@RequestBody CreateProductDto createProductDto,
                                          @PathVariable("id") Long id) {
 
