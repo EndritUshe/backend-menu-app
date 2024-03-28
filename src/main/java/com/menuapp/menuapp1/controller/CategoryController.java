@@ -5,11 +5,13 @@ import com.menuapp.menuapp1.dto.categoryDto.ResponseCategoryDto;
 import com.menuapp.menuapp1.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,9 @@ public class CategoryController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+    @SecurityRequirement(name = "basicAuth")
+
     @PostMapping("/save")
     public ResponseEntity<ResponseCategoryDto> save(@RequestBody CreateCategoryDto createCategoryDto){
         return new  ResponseEntity<>(categoryService.save(createCategoryDto), HttpStatus.CREATED);
@@ -49,6 +54,8 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+    @SecurityRequirement(name = "basicAuth")
     @GetMapping("/findall")
     public ResponseEntity<List<ResponseCategoryDto>> findAll(){
         return new ResponseEntity<>(categoryService.findAll(),HttpStatus.OK);
@@ -64,6 +71,8 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+    @SecurityRequirement(name = "basicAuth")
     @GetMapping("/{id}")
     public ResponseEntity<ResponseCategoryDto> findById(@PathVariable("id") Long categoryId){
         return new ResponseEntity<>(categoryService.findById(categoryId),HttpStatus.OK);
@@ -79,6 +88,8 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+   @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/update/{id}")
     public ResponseEntity<ResponseCategoryDto> update(@Valid @RequestBody CreateCategoryDto createCategoryDto, @PathVariable("id") long id) {
         return ResponseEntity.ok(categoryService.update(createCategoryDto, id));
@@ -93,6 +104,8 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+    @SecurityRequirement(name = "basicAuth")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         categoryService.delete(id);
