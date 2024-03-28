@@ -16,7 +16,7 @@ public class Vendor {
     private Long id;
 
     @NotEmpty(message = "Name cannot be empty")
-    private String name;
+    private String companyName;
 
 
     @NotEmpty(message = "address cannot be empty")

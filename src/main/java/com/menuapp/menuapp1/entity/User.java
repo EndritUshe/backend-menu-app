@@ -1,6 +1,8 @@
 package com.menuapp.menuapp1.entity;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
+@SecurityRequirement(name = "basicAuth")
 public class User {
 
     @Id
@@ -24,7 +27,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -39,7 +42,5 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Set <Role> roles;
-
-
 
 }

@@ -27,8 +27,10 @@ public class Product {
     @NotBlank(message = "The name of the product should be always entered!")
     private String name;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Vendor> vendors;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vendor> vendorList;
+
+    //, fetch = FetchType.EAGER
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviewList;

@@ -6,15 +6,18 @@ import com.menuapp.menuapp1.exceptions.ProductNotFoundException;
 import com.menuapp.menuapp1.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
+//"/api/product"
 @AllArgsConstructor
 @CrossOrigin("http://localhost:3000")
 @Tag(
@@ -32,6 +35,8 @@ public class ProductController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping("/save")
     public ResponseProductDto save(@RequestBody CreateProductDto createProductDto) {
         return productService.save(createProductDto);
@@ -46,8 +51,8 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-
-    @GetMapping()
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+    @GetMapping("/findall")
     public List<ResponseProductDto> findAll() {
         return productService.findAll();
     }
@@ -61,15 +66,12 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @GetMapping("/product/{id}")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+    @GetMapping("/findby/{id}")
     public ResponseEntity<ResponseProductDto> findById(@PathVariable Long id) {
         ResponseProductDto responseProductDto = productService.findById(id);
         return new ResponseEntity<>(responseProductDto, HttpStatus.OK);
     }
-
-
-
-
 
     @Operation(
             summary = "Find Product By Id REST API",
@@ -79,6 +81,8 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+    @SecurityRequirement(name = "basicAuth")
     @PutMapping("update/{id}")
     public ResponseEntity<ResponseProductDto> updateById(@RequestBody CreateProductDto createProductDto,
                                          @PathVariable("id") Long id) {
@@ -97,6 +101,7 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable("id") Long id) {
         productService.deleteById(id);

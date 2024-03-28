@@ -15,7 +15,6 @@ import java.util.*;
 public class CategoryMapper {
 
 
-
     public Category toEntity(CreateCategoryDto createCategoryDto){
         Category category = new Category();
         category.setName(createCategoryDto.getName());
