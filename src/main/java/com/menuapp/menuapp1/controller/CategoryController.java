@@ -16,10 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/categories")
+//@SecurityRequirement(name = "basicAuth")
 @Tag(
         name = "CRUD REST APIs for Category Resource"
 )
@@ -36,9 +37,7 @@ public class CategoryController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    @SecurityRequirement(name = "basicAuth")
-
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @PostMapping("/save")
     public ResponseEntity<ResponseCategoryDto> save(@RequestBody CreateCategoryDto createCategoryDto){
         return new  ResponseEntity<>(categoryService.save(createCategoryDto), HttpStatus.CREATED);
@@ -54,7 +53,7 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @SecurityRequirement(name = "basicAuth")
     @GetMapping("/findall")
     public ResponseEntity<List<ResponseCategoryDto>> findAll(){
@@ -71,13 +70,11 @@ public class CategoryController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
-    @SecurityRequirement(name = "basicAuth")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+//    @SecurityRequirement(name = "basicAuth")
     @GetMapping("/{id}")
     public ResponseEntity<ResponseCategoryDto> findById(@PathVariable("id") Long categoryId){
         return new ResponseEntity<>(categoryService.findById(categoryId),HttpStatus.OK);
-
-
     }
 
     @Operation(
@@ -89,7 +86,7 @@ public class CategoryController {
             description = "Http Status 200 SUCCESS"
     )
    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    @SecurityRequirement(name = "basicAuth")
+//    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/update/{id}")
     public ResponseEntity<ResponseCategoryDto> update(@Valid @RequestBody CreateCategoryDto createCategoryDto, @PathVariable("id") long id) {
         return ResponseEntity.ok(categoryService.update(createCategoryDto, id));
@@ -105,7 +102,7 @@ public class CategoryController {
             description = "Http Status 200 SUCCESS"
     )
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    @SecurityRequirement(name = "basicAuth")
+//    @SecurityRequirement(name = "basicAuth")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         categoryService.delete(id);

@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/review")
 @AllArgsConstructor
 @Tag(
         name = "CRUD REST APIs for Review Resource"
 )
-@SecurityRequirement(name = "basicAuth")
+//@SecurityRequirement(name = "basicAuth")
 public class ReviewController {
 
     private ReviewService reviewService;
@@ -38,7 +38,7 @@ public class ReviewController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
 
     @PostMapping("/save/{productId}")
     public ResponseEntity<ResponseReviewDto> save(@PathVariable("productId") Long productId, @Valid @RequestBody CreateReviewDto createReviewDto) {
@@ -89,7 +89,7 @@ public class ReviewController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
 //    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/update/{productId}/{reviewId}")
     public ResponseEntity<ResponseReviewDto> updateById(@PathVariable("productId") Long productId, @PathVariable("reviewId") Long reviewId,@Valid @RequestBody CreateReviewDto createReviewDto) {
@@ -105,7 +105,7 @@ public class ReviewController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @DeleteMapping("/delete/{productId}/{reviewId}")
     public ResponseEntity<String> deleteById(@PathVariable("productId") Long productId,@PathVariable("reviewId") Long reviewId) {
         reviewService.deleteById(productId,reviewId);

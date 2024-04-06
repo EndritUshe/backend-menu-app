@@ -1,5 +1,6 @@
 package com.menuapp.menuapp1.repository;
 
+import com.menuapp.menuapp1.entity.Product;
 import com.menuapp.menuapp1.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,8 +13,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsernameOrEmail(String username, String email);
 
-//    Boolean existsByUsername(String username);
-//
-//    Boolean existsByEmail(String email);
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
+
 
 }

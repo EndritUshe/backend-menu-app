@@ -15,11 +15,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/product")
 //"/api/product"
 @AllArgsConstructor
-@CrossOrigin("http://localhost:3000")
 @Tag(
         name = "CRUD REST APIs for Product Resource"
 )
@@ -35,8 +35,8 @@ public class ProductController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    @SecurityRequirement(name = "basicAuth")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+//    @SecurityRequirement(name = "basicAuth")
     @PostMapping("/save")
     public ResponseProductDto save(@RequestBody CreateProductDto createProductDto) {
         return productService.save(createProductDto);
@@ -51,6 +51,7 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
+
 //    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @GetMapping("/findall")
     public List<ResponseProductDto> findAll() {
@@ -81,8 +82,8 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    @SecurityRequirement(name = "basicAuth")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+//    @SecurityRequirement(name = "basicAuth")
     @PutMapping("update/{id}")
     public ResponseEntity<ResponseProductDto> updateById(@RequestBody CreateProductDto createProductDto,
                                          @PathVariable("id") Long id) {
@@ -101,7 +102,7 @@ public class ProductController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable("id") Long id) {
         productService.deleteById(id);
@@ -115,5 +116,46 @@ public class ProductController {
     public String handleNotFound(ProductNotFoundException  ex) {
         return ex.getMessage();  // You can customize the response body here
     }
+
+
+    @Operation(
+            summary = "Find Products By Parameters REST API",
+            description = "GET METHOD REST API is used to get a single product from database"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Http Status 200 SUCCESS"
+    )
+    @GetMapping("/search")
+    public List<ResponseProductDto> searchProducts(@RequestParam(value = "categoryName", required = false) String categoryName,
+                                                   @RequestParam(value = "name", required = false) String name,
+                                                   @RequestParam(value = "minPrice", required = false) Double minPrice,
+                                                   @RequestParam(value = "maxPrice", required = false) Double maxPrice){
+
+       return productService.searchProducts(categoryName,name,minPrice,maxPrice);
+
+
+    }
+
+
+    //Testimi i metodes per te marre te dhena lidhur me Operator AND
+//    @Operation(
+//            summary = "Find Products By Parameters REST API",
+//            description = "GET METHOD REST API is used to get a single product from database"
+//    )
+//    @ApiResponse(
+//            responseCode = "200",
+//            description = "Http Status 200 SUCCESS"
+//    )
+//    @GetMapping("/search/parameters")
+//    public List<ResponseProductDto> searchFilterProducts(@RequestParam(value = "categoryName", required = false) String categoryName,
+//                                                   @RequestParam(value = "name", required = false) String name,
+//                                                   @RequestParam(value = "minPrice", required = false) Double minPrice,
+//                                                   @RequestParam(value = "maxPrice", required = false) Double maxPrice){
+//
+//        return productService.searchFilterProducts(categoryName,name,minPrice,maxPrice);
+//
+//
+//    }
 
 }

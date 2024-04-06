@@ -38,13 +38,22 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/product/findall").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/product//findby/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/product/search").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/product/findby/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST,"api/product/save").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"api/product/update/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"api/product/delete/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/categories/findall").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/review/findByProductId/{productId}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/review/findBy/{productId}/{reviewId}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/vendor/findAll").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/vendor/findByProductId/{productId}").permitAll()
-                        .requestMatchers(HttpMethod.GET,("/findBy/{productId}/{vendorId}" )).permitAll()
-
+                        .requestMatchers(HttpMethod.GET,("/api/vendor/findBy/{productId}/{vendorId}" )).permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/review/save/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/vendor/save/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/users/save").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/register/signup").permitAll()
                         .anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
 
         return http.build();
