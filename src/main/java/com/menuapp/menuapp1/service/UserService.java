@@ -26,6 +26,7 @@ public class UserService {
     private RoleMapper roleMapper;
 
     public ResponseUserDto save(CreateUserDto createUserDto){
+
         User userToSave = userMapper.toEntity(createUserDto);
        userToSave.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
         User userToShow = userRepository.save(userToSave);

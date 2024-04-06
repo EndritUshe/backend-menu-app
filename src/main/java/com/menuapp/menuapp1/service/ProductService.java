@@ -14,9 +14,7 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -79,6 +77,36 @@ public class ProductService {
         );
         productRepository.delete(productFound);
 
+    }
+
+    //Classic Method to take the data from a single query
+//    public List<ResponseProductDto> searchProducts(String categoryName, String name, Double minPrice, Double maxPrice){
+//        List<Product> productList = productRepository.searchProducts(categoryName,name,minPrice,maxPrice);
+//        List<ResponseProductDto> productDtoList = new ArrayList<>();
+//
+//        for(Product product: productList){
+//            productDtoList.add(productMapper.toProductDto(product));
+//        }
+//return productDtoList;
+//    }
+
+
+    //Method to take data filtered query by query-> added together in a set to remove duplicates and then returned to the user
+    public List<ResponseProductDto> searchProducts(String categoryName, String name, Double minPrice, Double maxPrice){
+        List<Product> productList = new ArrayList<>();
+        productList.addAll(productRepository.findAllByCategoryName(categoryName));
+        productList.addAll(productRepository.findAllByName(name));
+        productList.addAll(productRepository.findAllByPriceBetween(minPrice,maxPrice));
+
+        Set<Product> productSet = new HashSet<>(productList);
+        List<Product> uniqueList = new ArrayList<>(productSet);
+        List<ResponseProductDto> responseProductDtos = new ArrayList<>();
+        for(Product product: uniqueList){
+            responseProductDtos.add(productMapper.toProductDto(product));
+
+        }
+
+        return responseProductDtos;
     }
 
 }

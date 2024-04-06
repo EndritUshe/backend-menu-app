@@ -14,14 +14,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/vendor")
 @AllArgsConstructor
 @Tag(
         name = "CRUD REST APIs for Vendor Class"
 )
-@SecurityRequirement(name = "basicAuth")
+//@SecurityRequirement(name = "basicAuth")
 public class VendorController {
 
     private VendorService vendorService;
@@ -35,7 +35,7 @@ public class VendorController {
             responseCode = "201",
             description = "Http Status 201 CREATED"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @PostMapping("/save/{productId}")
     public ResponseEntity<ResponseVendorDto> save(@PathVariable("productId") Long productId,
                                                   @RequestBody CreateVendorDto createVendorDto) {
@@ -94,7 +94,7 @@ public class VendorController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @PutMapping("/update/{productId}/{vendorId}")
     public ResponseEntity<ResponseVendorDto> updateByVendorId(@PathVariable Long productId,
                                                               @PathVariable Long vendorId,
@@ -112,7 +112,7 @@ public class VendorController {
             responseCode = "200",
             description = "Http Status 200 SUCCESS"
     )
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','USER')")
     @DeleteMapping("/delete/{productId}/{vendorId}")
     public ResponseEntity<String> deleteById(@PathVariable Long productId, @PathVariable Long vendorId) {
         vendorService.deleteVendor(productId, vendorId);
