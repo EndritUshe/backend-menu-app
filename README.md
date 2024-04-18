@@ -34,8 +34,8 @@
 
  ### Testing API's ⚙️:
 
--[![Postman][Postman-sheild]][Postman-url]
--[![Swagger][Swagger-sheild]][Swagger-url]
+- [![Postman][Postman-sheild]][Postman-url]
+- [![Swagger][Swagger-sheild]][Swagger-url]
 
 
 ## Demonstration 🎬 🔰
