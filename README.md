@@ -1,4 +1,4 @@
-![68747470733a2f2f696d672e736869656c64732e696f2f62616467652f48544d4c352d4533344632363f7374796c653d666f722d7468652d6261646765266c6f676f3d68746d6c35266c6f676f436f6c6f723d253233666666](https://github.com/EndritUshe/backend-menu-app/assets/133016602/824013ec-147c-499c-9af7-d192c7cfe1ca)Shop Online Website 🔰
+Shop Online Website 🔰
 
 ## Key Features (Monolithic Architecture) 🗝️
 
@@ -31,4 +31,23 @@
 
 
 https://github.com/EndritUshe/backend-menu-app/assets/133016602/5d2fd92a-81b6-4f02-aa2d-551b881676e0
+
+
+
+[HTML5-sheild]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=%23fff
+[HTML5-url]: https://en.wikipedia.org/wiki/HTML5
+[CSS3-sheild]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3
+[CSS3-url]: https://css3.com/
+[JavaScript-sheild]: https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=%23fff
+[JavaScript-url]: https://www.javascript.com/
+[NodeJs-sheild]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=%23fff
+[NodeJs-url]: https://nodejs.org/en
+[TypeScript-sheild]: https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=typescript&logoColor=fff
+[TypeScript-url]: https://www.typescriptlang.org/
+[AngularJs-sheild]: https://img.shields.io/badge/angular-dd0031?style=for-the-badge&logo=angular&logoColor=fff
+[AngularJs-url]: https://angular.io/
+[MySql-sheild]: https://img.shields.io/badge/MySQL-f29111?style=for-the-badge&logo=mysql&logoColor=fff
+[MySql-url]: https://www.mysql.com/
+[Bootstrap-sheild]: https://img.shields.io/badge/Bootstrap-6d2cf1?style=for-the-badge&logo=Bootstrap&logoColor=fff
+[Bootstrap-url]: https://getbootstrap.com/
 
