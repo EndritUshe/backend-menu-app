@@ -17,7 +17,6 @@ Shop Online Website 🔰
 - **Persistence Layer** Utilizes Spring Data JPA and Maps domain entities to database tables and vice versa for data storage and retrieval.
 
  ### Frontend 🖥️:
-- [JavaScript-sheild]: https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=%23fff
 
 - [![CSS3][CSS3-sheild]][CSS3-url]
 - [![ReactJS][ReactJS-sheild]][ReactJS-url]
@@ -50,4 +49,10 @@ https://github.com/EndritUshe/backend-menu-app/assets/133016602/5d2fd92a-81b6-4f
 [MySql-url]: https://www.mysql.com/
 [Bootstrap-sheild]: https://img.shields.io/badge/Bootstrap-6d2cf1?style=for-the-badge&logo=Bootstrap&logoColor=fff
 [Bootstrap-url]: https://getbootstrap.com/
+[Java-sheild]: https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=fff
+[Java-url]: https://www.java.com/
+[SpringBoot-sheild]: https://img.shields.io/badge/Spring_Boot-6db33f?style=for-the-badge&logo=spring-boot&logoColor=fff
+[SpringBoot-url]: https://spring.io/projects/spring-boot
+[ReactJS-sheild]: https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=fff
+[ReactJS-url]: https://reactjs.org/
 
