@@ -16,6 +16,19 @@ Shop Online Website 🔰
 
 - **Persistence Layer** Utilizes Spring Data JPA and Maps domain entities to database tables and vice versa for data storage and retrieval.
 
+ ### Frontend 🖥️:
+
+- [![HTML5][HTML5-sheild]][HTML5-url]
+- [![CSS3][CSS3-sheild]][CSS3-url]
+- [![ReactJS][ReactJS-sheild]][ReactJS-url]
+- [![BootStrap][Bootstrap-sheild]][Bootstrap-url]
+- [![JavaScript][JavaScript-sheild]][JavaScript-url]
+
+### Backend 🦾:
+
+- [![Java][Java-sheild]][Java-url]
+- [![Spring Boot][SpringBoot-sheild]][SpringBoot-url]
+
 
 https://github.com/EndritUshe/backend-menu-app/assets/133016602/5d2fd92a-81b6-4f02-aa2d-551b881676e0
 
