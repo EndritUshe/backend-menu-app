@@ -4,7 +4,7 @@
 
 - **User Registration and Authentication ->** Users can create accounts and log in securely to access the project features.
 
-- **Basic Secuirty Authentification ->** A comprehensive display of all available products in the application by verifying the user.
+- **Basic Security Authentification ->** A comprehensive display of all available products in the application by verifying the user.
 
 - **Authorization for different access roles ->** Users have different authorities based on their credentials.
 
